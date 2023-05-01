@@ -104,33 +104,86 @@ void encryption() {
          for(k = 0; k < 3; k++)
             e[i][j] = e[i][j] + a[i][k] * ms[k][j];
 
-   for(i = 0; i < 3; i++)
-      for(j = 0; j < 1; j++)
-         for (std::map< float, std::string>::iterator it = alphabet.begin(); it != alphabet.end(); it++)
-         {
-            if (((int)e[i][j])%67 == it->first){
-               std::cout << it->first << " -> "<< "'" << it->second  << "'" << std::endl;
-               break;
-            }
-         }  
+    for(i = 0; i < 3; i++)
+        for(j = 0; j < 1; j++)
+            for (std::map< float, std::string>::iterator it = alphabet.begin(); it != alphabet.end(); it++)
+            {
+                if (((int)e[i][j])%67 == it->first){
+                    std::cout << it->first << " -> "<< "'" << it->second  << "'" << std::endl;
+                    break;
+                    }
+            }  
 }
 
 
-void resolve_system()
+void resolve_system(char** argv)
 {
 
-
+    int i, j, k;
+    std::map< float, std::string> alphabet = {
+        { 8, "!"}, {42, " "}, {58, ",",},
+        {6, "."}, {7, "1"}, {1, "0"},
+        {34, "3"}, {37, "2"}, {3 , "5"},
+        {47, "4"}, {43, "7"}, {63, "6"},
+        {54, "9"}, {13, "8"}, {60, "?"},
+        {35, "A"}, {57, "C"}, {16, "B"},
+        {31, "E"}, {64, "D"}, {9 , "G"},
+        {23, "F"}, {29, "I"}, {32, "H"},
+        {55, "K"}, {53, "J"}, {21, "M"},
+        {5 , "L"}, {52, "O"}, {41, "N"}, 
+        {40, "Q"}, {26, "P"}, {22, "S"}, 
+        {18, "R"}, {51, "U"}, {15, "T"}, 
+        {17, "W"}, {62, "V"}, {45, "Y"}, 
+        {66, "X"}, {50, "Z"}, {25, "a"}, 
+        {38, "c"}, {0 , "b"}, {30, "e"}, 
+        {33, "d"}, {14, "g"}, {2 , "f"}, 
+        {10, "i"}, {4 , "h"}, {59, "k"}, 
+        {39, "j"}, {11, "m"}, {28, "l"}, 
+        {12, "o"}, {19, "n"}, {24, "q"}, 
+        {49, "p"}, {46, "s"}, {61, "r"}, 
+        {20, "u"}, {27, "t"}, {36, "w"}, 
+        {44, "v"}, {56, "y"}, {48, "x"}, 
+        {65, "z"} };
     float rs_candidat[9][1];
     float rs_hill[9][1];
 
-    rs_hill
+    rs_hill[0][0] = 32;
+    rs_hill[1][0] = 10;
+    rs_hill[2][0] = 28;
+    rs_hill[3][0] = 28;
+    rs_hill[4][0] = 42;
+    rs_hill[5][0] = 38;
+    rs_hill[6][0] = 10;
+    rs_hill[7][0] = 49;
+    rs_hill[8][0] = 4;
 
 
-    "Hill cipher"
+    std::cout << std::endl << "rs_hill :" << std::endl;
+    for(i = 0; i < 9; i++)
+            for (std::map< float, std::string>::iterator it = alphabet.begin(); it != alphabet.end(); it++)
+            {
+                if (rs_hill[i][0] == it->first){
+                    std::cout << it->first << " -> "<< "'" << it->second  << "'" << std::endl;
+                    break;
+                    }
+            }
+
+    std::cout << std::endl << "rs_candidat :" << std::endl;
+
+    for(i = 0; i < 9; i++)
+            for (std::map< float, std::string>::iterator it = alphabet.begin(); it != alphabet.end(); it++)
+            {
+                if (argv[3][i] == it->second[0]){
+                    std::cout << it->first << " -> "<< "'" << it->second  << "'" << std::endl;
+                    rs_candidat[i][0] = it->first;
+                    break;
+                    }
+            }
 
 
 
-    prends 3 trigram et resoue un system avec ces trigram en supposant que "hill cipher";
+    // "Hill cipher"
+    // prends 3 trigram et resoue un system avec ces trigram en supposant que "hill cipher";
     
 
 }
@@ -219,6 +272,7 @@ void decryption() {
     cout<<"\n";
 }
 int main(int argc, char**argv) {
+    resolve_system(argv);
     getKey(argv);
     encryption();
     decryption();
