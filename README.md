@@ -1,2 +1,2 @@
 # hill_cracker
-Implementation of a Hill cipher algorythme plaintext cracker.
+Implementation of plaintext attack against Hill cipher algorythme.
